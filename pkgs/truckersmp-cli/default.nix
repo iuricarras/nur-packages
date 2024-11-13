@@ -17,8 +17,8 @@ let
   src = fetchFromGitHub {
     repo = "truckersmp-cli";
     owner = "truckersmp-cli";
-    rev = "6ab26a81d4d45b44db790b866f29e3f59edb6ae5";
-    sha256 = "sha256-339v9YUdDH7vSa4ktFdXqsHiStyuhARYmOoVqyKurII=";
+    rev = "a50d9c06d19a4f7ef393a70611c91d4e7cf9a86e";
+    sha256 = "sha256-BeSPmcbK5GTUWlT3Fhm0MDfA0Go8JlCxl/PHgUN3sX0=";
   };
 
   postPatch = ''
@@ -49,7 +49,7 @@ let
 in 
   pkgs.buildFHSEnv {
     pname = "truckersmp-cli";
-    version = "0.10.2";
+    version = "0.10.2.1";
     targetPkgs = pkgs: [ truckersmp-cli ];
     runScript = "truckersmp-cli";
 
