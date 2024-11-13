@@ -3,8 +3,7 @@
 , fetchFromGitHub
 , python312Packages
 , SDL2
-, steamPackages
-, steam-run-native
+, steamcmd
 , pkgsCross}:
 
 
@@ -27,7 +26,7 @@ let
 
     substituteInPlace truckersmp_cli/steamcmd.py --replace \
       'steamcmd_path = os.path.join(Dir.steamcmddir, "steamcmd.sh")' \
-      'steamcmd_path = "${steamPackages.steamcmd}/bin/steamcmd"'
+      'steamcmd_path = "${steamcmd}/bin/steamcmd"'
 
     substituteInPlace truckersmp_cli/utils.py --replace \
       '"""Download files."""' 'print(files_to_download)'
@@ -41,7 +40,7 @@ let
 
   nativeBuildInputs = [ pkgsCross.mingwW64.buildPackages.gcc ];
 
-  buildInputs = [ SDL2 steamPackages.steamcmd steamPackages.steam-runtime];
+  buildInputs = [ SDL2 steamcmd ];
 
   propagatedBuildInputs = with python312Packages; [ vdf ];
 
