@@ -5,7 +5,9 @@
 , SDL2
 , steamPackages
 , steam-run-native
-, pkgsCross}:
+, pkgsCross
+, libGL
+, steam-run}:
 
 
 let 
@@ -41,7 +43,7 @@ let
 
   nativeBuildInputs = [ pkgsCross.mingwW64.buildPackages.gcc ];
 
-  buildInputs = [ SDL2 steamPackages.steamcmd steamPackages.steam-runtime];
+  buildInputs = [ SDL2 steamPackages.steamcmd steamPackages.steam-runtime libGL];
 
   propagatedBuildInputs = with python312Packages; [ vdf ];
 
@@ -50,8 +52,8 @@ in
   pkgs.buildFHSEnv {
     pname = "truckersmp-cli";
     version = "0.10.2";
-    targetPkgs = pkgs: [ truckersmp-cli ];
-    runScript = "truckersmp-cli";
+    targetPkgs = pkgs: [ truckersmp-cli steam-run];
+    runScript = "steam-run truckersmp-cli";
 
     meta = {
       description = "A simple launcher for TruckersMP to play ATS or ETS2 in multiplayer.";
